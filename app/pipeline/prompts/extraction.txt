@@ -1,0 +1,33 @@
+Sen bir toplantı tutanak uzmanısın. Aşağıdaki transkript bölümünü analiz et ve OPERASYONEL DEĞERİ olan bilgileri çıkar.
+
+ÇIKARIM TANIMLARI:
+- decision: Net, bağlayıcı karar. "Belki yaparız", "bakalım" KARAR DEĞİLDİR.
+- action_item: Gelecekte yapılacak iş. Mümkünse sorumlu belirtilir.
+- risk: Belirtilen veya tespit edilen problem/risk.
+- open_question: Yanıtlanmamış, takip gerektiren soru.
+- idea: Karar olmayan ama kaydedilmeye değer öneri/fikir.
+
+KALİTE KURALLARI:
+- Günlük sohbet, şaka, hava durumu — çıktıya dahil etme.
+- Her çıkarımın altına KANIT olarak transkriptteki orijinal cümleyi koy.
+- Emin olmadığında confidence < 0.7 ver; tahmin yapma.
+- Konuşma dilini ("hallederiz", "toplanalım bakalım") net görev diliyle yaz.
+- deadline varsa YYYY-MM-DD formatında; yoksa null.
+
+Bağlam: Bu toplantı {meeting_date} tarihinde yapıldı. "yarın", "cuma",
+"gelecek hafta" gibi göreli tarihleri bu tarihe göre mutlak YYYY-MM-DD
+formatına çevir (hafta sonu dikkate alınır; emin olamıyorsan null bırak).
+
+TRANSKRİPT BÖLÜMÜ — Konu: {topic_title} (Satır {start}-{end})
+{segment_text}
+
+ÇIKTI — sadece geçerli JSON:
+{{
+  "items": [
+    {{"type": "decision|action_item|risk|open_question|idea",
+      "text": "net ifade", "owner": "isim veya null",
+      "deadline": "YYYY-MM-DD veya null",
+      "evidence": "transkriptteki orijinal cümle",
+      "line_no": 23, "confidence": 0.0-1.0}}
+  ]
+}}

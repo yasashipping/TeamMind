@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<style>
+  body { font-family: DejaVu Sans, Arial, sans-serif; margin: 40px; color: #1a1a1a; }
+  h1 { font-size: 22px; border-bottom: 3px solid #2c5f8a; padding-bottom: 8px; }
+  h2 { font-size: 15px; color: #2c5f8a; margin-top: 28px; }
+  .meta { color: #555; font-size: 13px; }
+  table { border-collapse: collapse; width: 100%; margin-top: 8px; }
+  th, td { border: 1px solid #ccc; padding: 6px 10px; font-size: 13px; text-align: left; }
+  th { background: #eef4f9; }
+  .summary { background: #f7f9fb; border-left: 4px solid #2c5f8a; padding: 12px 16px; }
+  .item { margin: 6px 0; }
+  .owner { color: #2c5f8a; font-weight: bold; }
+  .deadline { color: #a33; font-weight: bold; }
+  .conf-low { color: #999; font-size: 11px; }
+</style>
+</head>
+<body>
+<h1>{{ title }}</h1>
+<p class="meta">
+  Tarih: {{ date }} &nbsp;|&nbsp;
+  Katılımcılar: {{ participants | join(", ") }}
+</p>
+
+<h2>Yönetici Özeti</h2>
+<div class="summary">{{ executive_summary }}</div>
+
+{% if decisions %}
+<h2>Kararlar</h2>
+{% for d in decisions %}
+<p class="item">• {{ d.text }}
+  {% if d.confidence < 0.7 %}<span class="conf-low">(düşük güven: {{ "%.0f" | format(d.confidence * 100) }}%)</span>{% endif %}
+  {% if d.evidence %}<br><span class="conf-low">Kanıt: {{ d.evidence }}</span>{% endif %}
+</p>
+{% endfor %}
+{% endif %}
+
+{% if action_items %}
+<h2>Aksiyon Maddeleri</h2>
+<table>
+  <tr><th>#</th><th>Görev</th><th>Sorumlu</th><th>Son Tarih</th><th>Güven</th></tr>
+  {% for a in action_items %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ a.text }}</td>
+    <td class="owner">{{ a.owner or "—" }}</td>
+    <td class="deadline">{{ a.deadline or "—" }}</td>
+    <td>{{ "%.0f" | format(a.confidence * 100) }}%</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+{% if risks %}
+<h2>Riskler ve Problemler</h2>
+{% for r in risks %}<p class="item">• {{ r.text }}</p>{% endfor %}
+{% endif %}
+
+{% if open_questions %}
+<h2>Açık Sorular</h2>
+{% for q in open_questions %}<p class="item">• {{ q.text }}</p>{% endfor %}
+{% endif %}
+
+{% if ideas %}
+<h2>Önemli Fikirler</h2>
+{% for i in ideas %}<p class="item">• {{ i.text }}</p>{% endfor %}
+{% endif %}
+</body>
+</html>

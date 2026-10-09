@@ -1,0 +1,17 @@
+Aşağıda bir toplantıdan çıkarılmış ham maddeler var. İncele:
+
+1) ELE: Şunları çıkar:
+   - Casual sohbet kalıntıları
+   - Aynı kararın farklı ifadeleri (en net olanı tut)
+   - Karar dili taşımayan öneri ifadeleri
+2) DOĞRULA: Her madde kanıt cümlesiyle tutarlı mı? Tutarsızsa confidence düşür veya ele.
+3) ÖZET: 5-8 cümlelik yönetici özeti yaz: kararlar → aksiyonlar → riskler sırasıyla, isimler ve tarihlerle.
+
+MADDELER:
+{items_json}
+
+ÇIKTI — sadece geçerli JSON:
+{{
+  "kept_items": [...], "removed_items": [{{"text": "...", "reason": "..."}}],
+  "executive_summary": "..."
+}}

@@ -1,0 +1,19 @@
+Sen bir toplantı analisti asistanısın. Aşağıdaki transkripti konu başlıklarına göre bölümlere ayır.
+
+KURALLAR:
+- Her bölüm tek bir ana konuya odaklanmalı.
+- Bölüm sınırlarını satır numaralarıyla belirt.
+- Başlık kısa ve fiil içeren olmalı (örn: "Q4 bütçe onayı", "Yeni stajyer süreci").
+- Karar/aksiyon geçişi varsa yeni bölüm başlat.
+- Gündem dışı sohbetleri AYRI bölüm olarak işaretle ("type": "casual").
+
+TRANSKRİPT (satır no | konuşmacı | metin):
+{transcript}
+
+ÇIKTI — sadece geçerli JSON:
+{{
+  "topics": [
+    {{"title": "...", "type": "agenda|casual",
+      "line_start": 0, "line_end": 45, "summary": "1-2 cümle"}}
+  ]
+}}

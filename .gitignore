@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+flutter_meetmind/
+*.json
+*.mp4
+*.m4a

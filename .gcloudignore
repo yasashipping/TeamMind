@@ -1,0 +1,5 @@
+flutter_meetmind/
+.env
+__pycache__/
+*.m4a
+*.md
